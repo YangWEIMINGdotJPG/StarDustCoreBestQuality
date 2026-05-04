@@ -255,3 +255,66 @@ button:active {
         margin: 0 10px;
     }
 }
+
+/* =========================================
+   🚀 SPLASH SCREEN (หน้าเปิดตัว)
+   ========================================= */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    background-image: radial-gradient(circle at center, #1e1b4b 0%, #020617 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+/* เอฟเฟกต์โลโก้เรืองแสงและขยับ */
+#splash-logo {
+    width: 160px; /* ปรับขนาดโลโก้ตามต้องการ */
+    max-width: 80%;
+    margin-bottom: 25px;
+    animation: logoPulse 2s infinite alternate;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.4));
+}
+
+/* ข้อความกำลังโหลด */
+.loading-text {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--galaxy-accent);
+    font-size: 14px;
+    letter-spacing: 4px;
+    animation: textBlink 1.5s infinite ease-in-out;
+}
+
+@keyframes logoPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.2)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.8)); }
+}
+
+@keyframes textBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ซ่อนและค่อยๆ โชว์หน้าหลัก */
+body.loading {
+    overflow: hidden; /* ห้ามเลื่อนจอตอนโลโก้ขึ้น */
+}
+
+#main-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.loaded #main-content {
+    opacity: 1;
+    transform: translateY(0);
+}
