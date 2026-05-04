@@ -1,86 +1,257 @@
-:root { 
-    /* เปลี่ยนจากโทนเลือด เป็นโทนกาแล็กซี */
-    --galaxy-main: #0f172a;    /* สีกรมท่าเข้มเกือบดำ */
-    --nebula-purple: #7c3aed;  /* สีม่วงเนบิวลา */
-    --cyan-star: #22d3ee;     /* สีฟ้าดาวฤกษ์ */
-    --starlight: #f1f5f9;     /* สีขาวนวลของแสงดาว */
-    --void: #020617;          /* สีดำลึกของอวกาศ */
+:root {
+    --apple-dark: #1d1d1f;
+    --apple-gray: #86868b;
+    --galaxy-accent: #00d4ff;
+    --glass-bg: rgba(25, 25, 35, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-* { box-sizing: border-box; }
-
-body { 
-    font-family: 'Kanit', sans-serif; 
-    /* พื้นหลังแบบไล่เฉดให้ดูมีมิติเหมือนอวกาศ */
-    background: radial-gradient(circle at center, #1e1b4b 0%, var(--void) 100%); 
-    color: var(--starlight); 
-    margin: 0; 
-    padding: 20px; 
-    display: flex; 
-    justify-content: center; 
-    /* เปลี่ยนเมาส์เป็นเป้าเล็งแบบ Sci-Fi */
-    cursor: crosshair; 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.container { 
-    width: 100%; 
-    max-width: 800px; 
-    /* ใช้ Glassmorphism ให้ดูเหมือนกระจกยานอวกาศ */
-    background: rgba(15, 23, 42, 0.85); 
-    backdrop-filter: blur(10px);
-    border-radius: 20px; 
-    border: 1px solid rgba(34, 211, 238, 0.3); 
-    padding: 0 0 30px 0; 
-    overflow: hidden; 
-    box-shadow: 0 0 40px rgba(34, 211, 238, 0.15); 
-    /* เปลี่ยนจาก bloodPulse เป็นการเรืองแสงของดวงดาว */
-    animation: starGlow 4s infinite ease-in-out;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Kanit", sans-serif;
+    background-color: #000;
+    /* พื้นหลังแนวอวกาศลึก */
+    background-image: radial-gradient(circle at 50% -20%, #1e1b4b 0%, #020617 80%);
+    color: #f5f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    z-index: 1;
 }
 
-/* ส่วนหัวภารกิจสำรวจ */
-.survivor-header { 
-    text-align: center; 
-    padding: 40px 20px; 
-    background: rgba(2, 6, 23, 0.5); 
-    border-top: 1px solid var(--cyan-star); 
+/* เอฟเฟกต์ดาวระยิบระยับ */
+.starfield {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.4;
+    z-index: -1;
+    pointer-events: none;
 }
 
-.survivor-title { 
-    color: var(--cyan-star); 
-    font-size: 32px; 
-    text-shadow: 0 0 15px rgba(34, 211, 238, 0.7); 
+/* กล่องหลักแบบ Glassmorphism (Apple Style) */
+.container {
+    width: 100%;
+    max-width: 650px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* อัปเกรดปุ่มคะแนนให้เป็นวงแหวนดาว */
-.rating-label { 
-    border: 2px solid rgba(34, 211, 238, 0.2); 
-    background: linear-gradient(145deg, #1e293b, #0f172a); 
-    color: var(--cyan-star); 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+/* Hero Section */
+.hero {
+    margin-bottom: 40px;
 }
 
-input[type="radio"]:checked + .rating-label { 
-    background: var(--cyan-star); 
-    color: var(--void); 
-    border-color: #fff; 
-    box-shadow: 0 0 20px var(--cyan-star);
-    animation: pulse-star 1.5s infinite; 
+.status-badge {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    color: var(--galaxy-accent);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
-@keyframes starGlow {
-    0%, 100% { border-color: rgba(34, 211, 238, 0.3); }
-    50% { border-color: var(--nebula-purple); box-shadow: 0 0 50px rgba(124, 58, 237, 0.2); }
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-@keyframes pulse-star {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+.subtitle {
+    color: var(--apple-gray);
+    font-size: 16px;
+    font-weight: 400;
 }
 
-/* ปุ่มส่งข้อมูลแบบ Warp Drive */
-button { 
-    background: linear-gradient(90deg, var(--nebula-purple), var(--cyan-star));
+/* Form Sections */
+.form-section {
+    margin-bottom: 35px;
+}
+
+.section-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    color: var(--apple-gray);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* Inputs & Textareas */
+input[type="text"], textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    color: #fff;
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    resize: none;
+}
+
+input[type="text"]:focus, textarea:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--galaxy-accent);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
+}
+
+/* Custom Radios (Glass Pills & Circles) */
+.custom-select, .star-rating {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.select-box, .rating-label {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--apple-gray);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+}
+
+.select-box:hover, .rating-label:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Active State สำหรับ Rank */
+input[type="radio"]:checked + .select-box {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Active State สำหรับ Rating (ไล่สีอวกาศ) */
+.star-rating .rating-label {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 0;
+}
+
+input[type="radio"]:checked + .rating-label {
+    background: linear-gradient(135deg, #00d4ff 0%, #6a0dad 100%);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* Submit Button */
+button {
+    width: 100%;
+    background: linear-gradient(135deg, #00d4ff 0%, #007aff 100%);
+    color: #fff;
     border: none;
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+    padding: 18px;
+    border-radius: 16px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: scale(0.98);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Footer */
+.main-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--apple-gray);
+}
+
+.social-links a {
+    color: var(--apple-gray);
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #fff;
+}
+
+/* Responsive สำหรับมือถือ */
+@media (max-width: 600px) {
+    .container {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    .hero h1 {
+        font-size: 28px;
+    }
+    .main-footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .social-links a {
+        margin: 0 10px;
+    }
 }
