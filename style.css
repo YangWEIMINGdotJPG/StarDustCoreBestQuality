@@ -1,120 +1,86 @@
 :root { 
-    --primary-glow: #22d3ee; 
-    --bg-dark: #020617; 
-    --text-main: #e2e8f0; 
-    --accent: #818cf8; 
+    /* เปลี่ยนจากโทนเลือด เป็นโทนกาแล็กซี */
+    --galaxy-main: #0f172a;    /* สีกรมท่าเข้มเกือบดำ */
+    --nebula-purple: #7c3aed;  /* สีม่วงเนบิวลา */
+    --cyan-star: #22d3ee;     /* สีฟ้าดาวฤกษ์ */
+    --starlight: #f1f5f9;     /* สีขาวนวลของแสงดาว */
+    --void: #020617;          /* สีดำลึกของอวกาศ */
 }
+
+* { box-sizing: border-box; }
 
 body { 
     font-family: 'Kanit', sans-serif; 
-    background: radial-gradient(circle at center, #1e1b4b 0%, #020617 100%); 
-    color: var(--text-main); 
-    /* เปลี่ยนจากเมาส์หลอนเป็นเมาส์สไตล์ Sci-Fi */
+    /* พื้นหลังแบบไล่เฉดให้ดูมีมิติเหมือนอวกาศ */
+    background: radial-gradient(circle at center, #1e1b4b 0%, var(--void) 100%); 
+    color: var(--starlight); 
+    margin: 0; 
+    padding: 20px; 
+    display: flex; 
+    justify-content: center; 
+    /* เปลี่ยนเมาส์เป็นเป้าเล็งแบบ Sci-Fi */
     cursor: crosshair; 
-}
-
-.container { 
-    background: rgba(15, 23, 42, 0.8); 
-    backdrop-filter: blur(15px); /* เอฟเฟกต์กระจกโปร่งแสง */
-    border: 1px solid rgba(34, 211, 238, 0.3); 
-    box-shadow: 0 0 30px rgba(34, 211, 238, 0.15); 
-    animation: nebulaFloat 6s infinite ease-in-out;
-}
-
-@keyframes nebulaFloat {
-    0%, 100% { box-shadow: 0 0 20px rgba(129, 140, 248, 0.2); }
-    50% { box-shadow: 0 0 40px rgba(34, 211, 238, 0.4); }
 }
 
 .container { 
     width: 100%; 
     max-width: 800px; 
-    background: rgba(15, 23, 42, 0.8); 
+    /* ใช้ Glassmorphism ให้ดูเหมือนกระจกยานอวกาศ */
+    background: rgba(15, 23, 42, 0.85); 
     backdrop-filter: blur(10px);
     border-radius: 20px; 
-    border: 1px solid rgba(0, 212, 255, 0.3); 
+    border: 1px solid rgba(34, 211, 238, 0.3); 
+    padding: 0 0 30px 0; 
     overflow: hidden; 
-    box-shadow: 0 0 40px rgba(0, 212, 255, 0.1); 
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.15); 
+    /* เปลี่ยนจาก bloodPulse เป็นการเรืองแสงของดวงดาว */
+    animation: starGlow 4s infinite ease-in-out;
 }
 
-.header-space {
-    padding: 60px 20px;
-    text-align: center;
-    background: linear-gradient(to bottom, rgba(0, 212, 255, 0.1), transparent);
+/* ส่วนหัวภารกิจสำรวจ */
+.survivor-header { 
+    text-align: center; 
+    padding: 40px 20px; 
+    background: rgba(2, 6, 23, 0.5); 
+    border-top: 1px solid var(--cyan-star); 
 }
 
-.mission-title {
-    font-size: 36px;
-    color: var(--space-blue);
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-    letter-spacing: 2px;
+.survivor-title { 
+    color: var(--cyan-star); 
+    font-size: 32px; 
+    text-shadow: 0 0 15px rgba(34, 211, 238, 0.7); 
 }
 
-h2 { 
-    color: var(--space-blue); 
-    border-left: 4px solid var(--space-blue);
-    padding-left: 15px;
-    font-size: 20px;
-}
-
-.question-box { 
-    background: var(--glass); 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px; 
-    border-radius: 12px; 
-    margin-bottom: 20px; 
-}
-
-/* ปุ่ม Rating แบบล้ำๆ */
-.rating-container { display: flex; gap: 15px; justify-content: center; }
-
+/* อัปเกรดปุ่มคะแนนให้เป็นวงแหวนดาว */
 .rating-label { 
-    width: 50px; height: 50px;
-    display: flex; justify-content: center; align-items: center;
-    border: 1px solid var(--space-blue);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-    color: var(--space-blue);
+    border: 2px solid rgba(34, 211, 238, 0.2); 
+    background: linear-gradient(145deg, #1e293b, #0f172a); 
+    color: var(--cyan-star); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 input[type="radio"]:checked + .rating-label { 
-    background: var(--space-blue);
-    color: var(--dark-void);
-    box-shadow: 0 0 20px var(--space-blue);
+    background: var(--cyan-star); 
+    color: var(--void); 
+    border-color: #fff; 
+    box-shadow: 0 0 20px var(--cyan-star);
+    animation: pulse-star 1.5s infinite; 
 }
 
-/* ปุ่ม Submit สไตล์ Launch Button */
+@keyframes starGlow {
+    0%, 100% { border-color: rgba(34, 211, 238, 0.3); }
+    50% { border-color: var(--nebula-purple); box-shadow: 0 0 50px rgba(124, 58, 237, 0.2); }
+}
+
+@keyframes pulse-star {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ปุ่มส่งข้อมูลแบบ Warp Drive */
 button { 
-    background: linear-gradient(45deg, var(--space-blue), var(--deep-purple));
-    color: white; 
-    width: 100%;
-    padding: 20px; 
+    background: linear-gradient(90deg, var(--nebula-purple), var(--cyan-star));
     border: none;
-    border-radius: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.4s;
-    letter-spacing: 3px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
 }
-
-button:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
-}
-
-/* ซ่อน Radio มาตรฐาน */
-input[type="radio"] { display: none; }
-
-/* Splash Screen Loader */
-.loader {
-    border: 4px solid var(--glass);
-    border-top: 4px solid var(--space-blue);
-    border-radius: 50%;
-    width: 50px; height: 50px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
