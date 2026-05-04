@@ -78,22 +78,53 @@ function resetButton(btn, text) {
 }
 
 // =========================================
-// 🎬 ควบคุม Splash Screen เปิดตัว
+// 🎬 ควบคุม Sequence การเปิดตัว (Logo -> IG -> Form)
 // =========================================
 window.addEventListener('load', () => {
-    // ล็อกหน้าจอไม่ให้เลื่อนระหว่างโหลด
-    document.body.classList.add('loading'); 
+    document.body.classList.add('loading'); // ล็อกหน้าจอไม่ให้เลื่อน
     
-    // ตั้งเวลา 2.5 วินาที (2500 มิลลิวินาที) ให้โลโก้หายไป
+    const logoSplash = document.getElementById('splash-screen');
+    const igSplash = document.getElementById('ig-screen');
+    const mainContent = document.getElementById('main-content');
+    
+    // คิวที่ 1: โชว์โลโก้ 2 วินาที
     setTimeout(() => {
-        const splash = document.getElementById('splash-screen');
-        if (splash) {
-            splash.style.opacity = '0';
-            splash.style.visibility = 'hidden';
-        }
+        if (logoSplash) logoSplash.style.opacity = '0';
         
-        // ปลดล็อกหน้าจอและโชว์คอนเทนต์หลัก
-        document.body.classList.remove('loading');
-        document.body.classList.add('loaded');
-    }, 2500); 
+        // คิวที่ 2: รอโลโก้จางหาย (0.8 วิ) แล้วเปิดหน้า IG
+        setTimeout(() => {
+            if (logoSplash) logoSplash.style.display = 'none';
+            
+            if (igSplash) {
+                igSplash.style.display = 'flex';
+                // หน่วงเวลาเล็กน้อยเพื่อให้เอฟเฟกต์เฟดอินทำงาน
+                setTimeout(() => { igSplash.style.opacity = '1'; }, 50);
+            }
+            
+            // คิวที่ 3: โชว์หน้า IG ค้างไว้ 2.5 วินาที
+            setTimeout(() => {
+                if (igSplash) igSplash.style.opacity = '0';
+                
+                // คิวที่ 4 (สุดท้าย): รอหน้า IG จางหายสนิท (0.8 วิ) ค่อยโชว์หน้าฟอร์มประเมิน!
+                setTimeout(() => {
+                    if (igSplash) igSplash.style.display = 'none';
+                    
+                    // ปลดล็อกหน้าจอ
+                    document.body.classList.remove('loading');
+                    
+                    // สั่งโชว์หน้าประเมิน
+                    if (mainContent) {
+                        mainContent.style.display = 'block'; // ให้กินพื้นที่บนหน้าเว็บ
+                        setTimeout(() => {
+                            mainContent.style.opacity = '1'; // เฟดความสว่างขึ้นมา
+                            mainContent.style.transform = 'translateY(0)'; // เลื่อนขึ้นมาสวยๆ
+                        }, 50);
+                    }
+                }, 800);
+                
+            }, 2500); 
+            
+        }, 800); 
+        
+    }, 2000); 
 });
