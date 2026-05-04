@@ -1,5 +1,7 @@
-// URL ของ Google Apps Script (ถ้ามี) ให้นำมาใส่ตรงนี้
-// const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+// =========================================
+// 🚀 URL ของ Google Apps Script
+// =========================================
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzGRhWOYDfiTaYiDh2_hyEpliNE0oJ73MwzlmIy3SFomFA1uHqu0E5mnSvaCau-nG5o/exec'; 
 
 const form = document.getElementById('assessmentForm');
 
@@ -10,37 +12,25 @@ if (form) {
         const submitBtn = document.getElementById('submitBtn');
         const originalText = submitBtn.innerText;
         
-        // เปลียนข้อความปุ่มขณะกำลังส่งข้อมูล
+        // เปลี่ยนข้อความปุ่มขณะกำลังส่งข้อมูล
         submitBtn.disabled = true;
         submitBtn.innerText = 'TRANSMITTING...';
         submitBtn.style.opacity = '0.7';
 
         // -----------------------------------------------------
-        // หากต้องการส่งข้อมูลเข้า Google Sheets ให้เปิดคอมเมนต์ชุดด้านล่างนี้
-        // และเอา setTimeout ชุดล่างสุดออก
+        // ส่งข้อมูลเข้า Google Sheets แบบของจริง!
         // -----------------------------------------------------
-        /*
         const formData = new FormData(form);
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(res => {
-                showSuccessAlert();
-                form.reset();
-                resetButton(submitBtn, originalText);
+                showSuccessAlert(); // โชว์โฮโลแกรมว่าสำเร็จ
+                form.reset();       // ล้างแบบฟอร์ม
+                resetButton(submitBtn, originalText); // คืนค่าปุ่ม
             })
             .catch(err => {
-                showErrorAlert();
+                showErrorAlert();   // โชว์แจ้งเตือนว่าพัง
                 resetButton(submitBtn, originalText);
             });
-        */
-
-        // -----------------------------------------------------
-        // การจำลองการส่งข้อมูล (Simulation) สำหรับทดสอบ UI
-        // -----------------------------------------------------
-        setTimeout(() => {
-            showSuccessAlert();
-            form.reset();
-            resetButton(submitBtn, originalText);
-        }, 1500);
     });
 }
 
@@ -81,50 +71,37 @@ function resetButton(btn, text) {
 // 🎬 ควบคุม Sequence การเปิดตัว (Logo -> IG -> Form)
 // =========================================
 window.addEventListener('load', () => {
-    document.body.classList.add('loading'); // ล็อกหน้าจอไม่ให้เลื่อน
+    document.body.classList.add('loading');
     
     const logoSplash = document.getElementById('splash-screen');
     const igSplash = document.getElementById('ig-screen');
     const mainContent = document.getElementById('main-content');
     
-    // คิวที่ 1: โชว์โลโก้ 2 วินาที
+    // โชว์โลโก้ 2 วินาที
     setTimeout(() => {
         if (logoSplash) logoSplash.style.opacity = '0';
         
-        // คิวที่ 2: รอโลโก้จางหาย (0.8 วิ) แล้วเปิดหน้า IG
         setTimeout(() => {
             if (logoSplash) logoSplash.style.display = 'none';
-            
             if (igSplash) {
                 igSplash.style.display = 'flex';
-                // หน่วงเวลาเล็กน้อยเพื่อให้เอฟเฟกต์เฟดอินทำงาน
                 setTimeout(() => { igSplash.style.opacity = '1'; }, 50);
             }
             
-            // คิวที่ 3: โชว์หน้า IG ค้างไว้ 2.5 วินาที
             setTimeout(() => {
                 if (igSplash) igSplash.style.opacity = '0';
-                
-                // คิวที่ 4 (สุดท้าย): รอหน้า IG จางหายสนิท (0.8 วิ) ค่อยโชว์หน้าฟอร์มประเมิน!
                 setTimeout(() => {
                     if (igSplash) igSplash.style.display = 'none';
-                    
-                    // ปลดล็อกหน้าจอ
                     document.body.classList.remove('loading');
-                    
-                    // สั่งโชว์หน้าประเมิน
                     if (mainContent) {
-                        mainContent.style.display = 'block'; // ให้กินพื้นที่บนหน้าเว็บ
+                        mainContent.style.display = 'block'; 
                         setTimeout(() => {
-                            mainContent.style.opacity = '1'; // เฟดความสว่างขึ้นมา
-                            mainContent.style.transform = 'translateY(0)'; // เลื่อนขึ้นมาสวยๆ
+                            mainContent.style.opacity = '1'; 
+                            mainContent.style.transform = 'translateY(0)'; 
                         }, 50);
                     }
                 }, 800);
-                
             }, 2500); 
-            
         }, 800); 
-        
     }, 2000); 
 });
