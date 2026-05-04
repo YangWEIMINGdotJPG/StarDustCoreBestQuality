@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HorrorGram OS | Galaxy Edition</title>
+    <title>Stardust Core OS | Galaxy Edition</title>
     
     <!-- เชื่อมต่อ Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
@@ -23,11 +23,19 @@
         <div class="loading-text">INITIALIZING SYSTEM...</div>
     </div>
 
+    <!-- หน้าจอโชว์ IG -->
+    <div id="ig-screen">
+        <div class="ig-content">
+            <!-- เปลี่ยน Instagram_icon.png เป็นชื่อไฟล์รูปไอคอน IG ของคุณ -->
+            <img src="Instagram_icon.png" class="ig-icon-img" alt="Instagram">
+            <span class="ig-handle">sileiabeans</span>
+        </div>
+    </div>
+
     <!-- เอฟเฟกต์ดาวระยิบระยับพื้นหลัง -->
     <div class="starfield"></div>
 
-    <main class="container">
-        <!-- ส่วนหัว (Hero) -->
+    <main class="container" id="main-content" style="display: none; opacity: 0; transform: translateY(20px); transition: all 1s ease-in-out;">        <!-- ส่วนหัว (Hero) -->
         <header class="hero">
             <div class="status-badge">System Online</div>
             <h1>Stardust Core</h1>
@@ -40,12 +48,12 @@
                 <div class="section-label">01 / PERSONNEL IDENTITY</div>
                 
                 <div class="input-group">
-                    <label for="pilot-name">นามเรียกขาน (Callsign)</label>
+                    <label for="pilot-name">นามเรียกขาน (Name)</label>
                     <input type="text" id="pilot-name" name="name" placeholder="ENTER PILOT NAME..." required>
                 </div>
 
                 <div class="input-group">
-                    <label>ระดับชั้นอายุ</label>
+                    <label>ระดับชั้นอายุ (Age)</label>
                     <div class="custom-select">
                         <input type="radio" id="rank1" name="rank" value="ต่ำกว่า 19 ปี" required>
                         <label for="rank1" class="select-box">ต่ำกว่า 19 ปี</label>
@@ -89,15 +97,70 @@
                 </div>
             </section>
 
+
+            <!-- ส่วนที่ 3: เลือกตัวละคร (Entity Encounter) -->
+            <section class="form-section">
+                <div class="section-label">03 / ENTITY ENCOUNTER</div>
+
+                <div class="input-group">
+                    <label>ระบุสิ่งมีชีวิต/ตัวละครที่คุณประทับใจมากที่สุดในภารกิจนี้</label>
+                    
+                    <div class="character-grid">
+                        <!-- ตัวละครที่ 1 -->
+                        <label class="character-card">
+                            <input type="radio" name="fav_character" value="Character 1" required>
+                            <!-- อย่าลืมเปลี่ยน src เป็นชื่อไฟล์รูปของคุณ เช่น char1.png -->
+                            <img src="Asteroisuar.png" alt="Char 1">
+                            <span class="char-name">ASTEROISUAR</span>
+                        </label>
+
+                        <!-- ตัวละครที่ 2 -->
+                        <label class="character-card">
+                            <input type="radio" name="fav_character" value="Character 2">
+                            <img src="Yang.png" alt="Char 2">
+                            <span class="char-name">YANGWEIMING</span>
+                        </label>
+
+                        <!-- ตัวละครที่ 3 -->
+                        <label class="character-card">
+                            <input type="radio" name="fav_character" value="Character 3">
+                            <img src="Korsdaver.png" alt="Char 3">
+                            <span class="char-name">KORS DAVER 03</span>
+                        </label>
+
+                        <!-- ตัวละครที่ 4 -->
+                        <label class="character-card">
+                            <input type="radio" name="fav_character" value="Character 4">
+                            <img src="Jaxx.png" alt="Char 4">
+                            <span class="char-name">JAXX 04</span>
+                        </label>
+
+                        <!-- ตัวละครที่ 5 -->
+                        <label class="character-card">
+                            <input type="radio" name="fav_character" value="Character 5">
+                            <img src="Chariot.png" alt="Char 5">
+                            <span class="char-name">CHARIOT</span>
+                        </label>
+
+                        <!-- ตัวละครที่ 6 -->
+                        <label class="character-card">
+                            <input type="radio" name="fav_character" value="Character 6">
+                            <img src="Ego.png" alt="Char 6">
+                            <span class="char-name">E.G.O</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
             <!-- ปุ่มส่งข้อมูล -->
             <button type="submit" id="submitBtn">INITIATE LAUNCH</button>
         </form>
 
         <!-- ส่วนท้าย -->
         <footer class="main-footer">
-            <p>© 2026 HORRORGRAM PROJECT | GALAXY EDITION</p>
+            <p>©2026 ART TOYS PROJECT | GALAXY EDITION</p>
             <div class="social-links">
-                <a href="#">INSTAGRAM</a>
+                <a href="https://www.instagram.com/sileiabeans/">INSTAGRAM</a>
                 <a href="#">GITHUB</a>
             </div>
         </footer>
