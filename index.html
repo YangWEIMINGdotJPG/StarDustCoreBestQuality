@@ -71,29 +71,73 @@
             <section class="form-section">
                 <div class="section-label">02 / MISSION FEEDBACK</div>
 
+                <!-- ข้อที่ 1: การออกแบบของตัวละคร -->
                 <div class="input-group">
-                    <label>ความเสถียรของระบบวาร์ป (Warp Drive Stability)</label>
+                    <label>การออกแบบของตัวละคร (Character Design)</label>
                     <div class="star-rating">
-                        <input type="radio" id="r5" name="rate" value="5" required>
-                        <label for="r5" class="rating-label">5</label>
+                        <input type="radio" id="design5" name="character_design" value="5" required>
+                        <label for="design5" class="rating-label">5</label>
                         
-                        <input type="radio" id="r4" name="rate" value="4">
-                        <label for="r4" class="rating-label">4</label>
+                        <input type="radio" id="design4" name="character_design" value="4">
+                        <label for="design4" class="rating-label">4</label>
                         
-                        <input type="radio" id="r3" name="rate" value="3">
-                        <label for="r3" class="rating-label">3</label>
+                        <input type="radio" id="design3" name="character_design" value="3">
+                        <label for="design3" class="rating-label">3</label>
                         
-                        <input type="radio" id="r2" name="rate" value="2">
-                        <label for="r2" class="rating-label">2</label>
+                        <input type="radio" id="design2" name="character_design" value="2">
+                        <label for="design2" class="rating-label">2</label>
                         
-                        <input type="radio" id="r1" name="rate" value="1">
-                        <label for="r1" class="rating-label">1</label>
+                        <input type="radio" id="design1" name="character_design" value="1">
+                        <label for="design1" class="rating-label">1</label>
                     </div>
                 </div>
 
+                <!-- ข้อที่ 2: Concept ของตัวละคร -->
                 <div class="input-group">
-                    <label for="message">ข้อความถึงศูนย์ควบคุม (Logs)</label>
-                    <textarea id="message" name="feedback" rows="4" placeholder="TRANSMIT YOUR MESSAGE HERE..."></textarea>
+                    <label>Concept ของตัวละคร (Character Concept)</label>
+                    <div class="star-rating">
+                        <input type="radio" id="concept5" name="character_concept" value="5" required>
+                        <label for="concept5" class="rating-label">5</label>
+                        
+                        <input type="radio" id="concept4" name="character_concept" value="4">
+                        <label for="concept4" class="rating-label">4</label>
+                        
+                        <input type="radio" id="concept3" name="character_concept" value="3">
+                        <label for="concept3" class="rating-label">3</label>
+                        
+                        <input type="radio" id="concept2" name="character_concept" value="2">
+                        <label for="concept2" class="rating-label">2</label>
+                        
+                        <input type="radio" id="concept1" name="character_concept" value="1">
+                        <label for="concept1" class="rating-label">1</label>
+                    </div>
+                </div>
+
+                <!-- ข้อที่ 3: การจัดวางบูธ -->
+                <div class="input-group">
+                    <label>การจัดวางบูธ (Booth Layout)</label>
+                    <div class="star-rating">
+                        <input type="radio" id="booth5" name="booth_layout" value="5" required>
+                        <label for="booth5" class="rating-label">5</label>
+                        
+                        <input type="radio" id="booth4" name="booth_layout" value="4">
+                        <label for="booth4" class="rating-label">4</label>
+                        
+                        <input type="radio" id="booth3" name="booth_layout" value="3">
+                        <label for="booth3" class="rating-label">3</label>
+                        
+                        <input type="radio" id="booth2" name="booth_layout" value="2">
+                        <label for="booth2" class="rating-label">2</label>
+                        
+                        <input type="radio" id="booth1" name="booth_layout" value="1">
+                        <label for="booth1" class="rating-label">1</label>
+                    </div>
+                </div>
+
+                <!-- ข้อความเสนอแนะ -->
+                <div class="input-group">
+                    <label for="message">ข้อความถึงศูนย์ควบคุม (ข้อเสนอแนะ)</label>
+                    <textarea id="message" name="feedback" rows="4" placeholder="TEXT YOUR MESSAGE HERE..."></textarea>
                 </div>
             </section>
 
@@ -158,9 +202,13 @@
 
         <!-- ส่วนท้าย -->
         <footer class="main-footer">
-            <p>©2026 ART TOYS PROJECT | GALAXY EDITION</p>
+            <p>©2026 ART TOYS PROJECT</p>
             <div class="social-links">
-                <a href="https://www.instagram.com/sileiabeans/">INSTAGRAM</a>
+                <p>Presented by</p>
+                <a href="https://www.instagram.com/sileiabeans/" target="_blank">
+                    <img src="Instagram_icon.png" alt="IG" class="footer-icon">
+                    sileiabeans
+                </a>
                 <a href="#">GITHUB</a>
             </div>
         </footer>
