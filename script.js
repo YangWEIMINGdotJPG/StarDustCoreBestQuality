@@ -21,6 +21,15 @@ if (form) {
         // ส่งข้อมูลเข้า Google Sheets แบบของจริง!
         // -----------------------------------------------------
         const formData = new FormData(form);
+
+        // 🟢 โค้ดที่เพิ่มเข้ามา: มัดรวมตัวละครที่ถูกเลือกให้เป็นข้อความเดียว (เช่น "Character 1, Character 3")
+        const selectedCharacters = [];
+        document.querySelectorAll('input[name="fav_character"]:checked').forEach(cb => {
+            selectedCharacters.push(cb.value);
+        });
+        formData.set('fav_character', selectedCharacters.join(', ')); // เอาไปทับค่าเดิมใน FormData
+
+        // ส่งข้อมูลไปยัง Google Apps Script
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(res => {
                 showSuccessAlert(); // โชว์โฮโลแกรมว่าสำเร็จ
