@@ -46,7 +46,7 @@ if (form) {
 // ฟังก์ชันแสดง Alert สำเร็จสไตล์อวกาศ
 function showSuccessAlert() {
     Swal.fire({ 
-        title: 'TRANSMISSION COMPLETE', 
+        title: 'COMPLETE', 
         text: 'ข้อมูลพิกัดถูกบันทึกเข้าสู่ฐานข้อมูลหลักแล้ว', 
         icon: 'success', 
         background: 'rgba(15, 23, 42, 0.95)', 
